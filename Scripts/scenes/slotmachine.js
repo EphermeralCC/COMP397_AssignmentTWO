@@ -18,13 +18,13 @@ var scenes;
         // CONSTRUCTOR ++++++++++++++++++++++
         function SlotMachine() {
             _super.call(this);
-            this._grapes = 0;
-            this._bananas = 0;
-            this._oranges = 0;
-            this._cherries = 0;
-            this._bars = 0;
-            this._bells = 0;
-            this._sevens = 0;
+            this._venasaur = 0;
+            this._charizard = 0;
+            this._blastoise = 0;
+            this._typlosion = 0;
+            this._meganium = 0;
+            this._feraligatr = 0;
+            this._gengar = 0;
             this._blanks = 0;
         }
         // PUBLIC METHODS +++++++++++++++++++++
@@ -129,7 +129,7 @@ var scenes;
         SlotMachine.prototype._spinButtonClick = function (event) {
             var pokemonBitmap = this._spinReels();
             for (var reel = 0; reel < 3; reel++) {
-                this._reels[0].image = assets.getResult(pokemonBitmap[reel]);
+                this._reels[reel].image = assets.getResult(pokemonBitmap[reel]);
             }
         };
         return SlotMachine;

@@ -17,13 +17,13 @@ module scenes {
         private _spinButton: objects.Button;
         private _reels: createjs.Bitmap[];
 
-        private _grapes = 0;
-        private _bananas = 0;
-        private _oranges = 0;
-        private _cherries = 0;
-        private _bars = 0;
-        private _bells = 0;
-        private _sevens = 0;
+        private _venasaur = 0;
+        private _charizard = 0;
+        private _blastoise = 0;
+        private _typlosion = 0;
+        private _meganium = 0;
+        private _feraligatr = 0;
+        private _gengar = 0;
         private _blanks = 0;
         // CONSTRUCTOR ++++++++++++++++++++++
         constructor() {
@@ -152,7 +152,7 @@ module scenes {
             var pokemonBitmap: string[] = this._spinReels();
 
             for (var reel: number = 0; reel < 3; reel++) {
-                this._reels[0].image = assets.getResult(pokemonBitmap[reel]);
+                this._reels[reel].image = assets.getResult(pokemonBitmap[reel]);
             }
         }
     }
