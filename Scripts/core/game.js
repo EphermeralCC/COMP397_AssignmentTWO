@@ -1,3 +1,10 @@
+//The Source file name: game.ts 
+//Author’s name: Christine Cho
+//Last Modified by: Christine Cho
+//Date last Modified: 02/26/2016
+//Program description: The main controller for the slotmachine 
+//Revision History: 
+//      - Added images for reels 02/26/2016
 /// <reference path = "_reference.ts" />
 // global variables
 var assets;
@@ -21,7 +28,15 @@ var assetData = [
     { id: "Bet100Button", src: "../../Assets/images/Bet100Button.png" },
     { id: "SpinButton", src: "../../Assets/images/SpinButton.png" },
     { id: "BlackBackground", src: "../../Assets/images/BlackBackground.png" },
-    { id: "WhiteBackground", src: "../../Assets/images/WhiteBackground.png" }
+    { id: "WhiteBackground", src: "../../Assets/images/WhiteBackground.png" },
+    { id: "Blank", src: "../../Assets/images/Blank.png" },
+    { id: "Venasaur", src: "../../Assets/images/Venasaur.png" },
+    { id: "Charizard", src: "../../Assets/images/Charizard.png" },
+    { id: "Blastoise", src: "../../Assets/images/Blastoise.png" },
+    { id: "Typlosion", src: "../../Assets/images/Typlosion.png" },
+    { id: "Meganium", src: "../../Assets/images/Meganium.png" },
+    { id: "Feraligatr", src: "../../Assets/images/Feraligatr.png" },
+    { id: "Gengar", src: "../../Assets/images/Gengar.png" }
 ];
 function preload() {
     assets = new createjs.LoadQueue();
@@ -94,4 +109,5 @@ function changeScene() {
     }
     console.log(currentScene.numChildren);
 }
+window.onload = preload;
 //# sourceMappingURL=game.js.map
