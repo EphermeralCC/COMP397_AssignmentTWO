@@ -103,32 +103,32 @@ module scenes {
                         this._blanks++;
                         break;
                     case this._checkRange(outCome[spin], 28, 37): // 15.4% probability
-                        betLine[spin] = "Vensaur";
-                        this._grapes++;
+                        betLine[spin] = "Venasaur";
+                        this._venasaur++;
                         break;
                     case this._checkRange(outCome[spin], 38, 46): // 13.8% probability
                         betLine[spin] = "Charizard";
-                        this._bananas++;
+                        this._charizard++;
                         break;
                     case this._checkRange(outCome[spin], 47, 54): // 12.3% probability
                         betLine[spin] = "Blastoise";
-                        this._oranges++;
+                        this._blastoise++;
                         break;
                     case this._checkRange(outCome[spin], 55, 59): //  7.7% probability
                         betLine[spin] = "Meganium";
-                        this._cherries++;
+                        this._meganium++;
                         break;
                     case this._checkRange(outCome[spin], 60, 62): //  4.6% probability
                         betLine[spin] = "Typlosion";
-                        this._bars++;
+                        this._typlosion++;
                         break;
                     case this._checkRange(outCome[spin], 63, 64): //  3.1% probability
                         betLine[spin] = "Feraligatr";
-                        this._bells++;
+                        this._feraligatr++;
                         break;
                     case this._checkRange(outCome[spin], 65, 65): //  1.5% probability
                         betLine[spin] = "Gengar";
-                        this._sevens++;
+                        this._gengar++;
                         break;
                 }
             }
