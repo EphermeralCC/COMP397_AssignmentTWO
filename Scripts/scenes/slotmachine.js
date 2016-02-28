@@ -49,14 +49,11 @@ var scenes;
             this._spinButton = new objects.Button("SpinButton", 420, 400, false);
             this.addChild(this._spinButton);
             this._spinButton.on("click", this._spinButtonClick, this);
+            //Add Jackpot Text to the scene
+            this._jackpotText = new objects.Label("0", "bold 18px Consolas", "#8A80A3", 245, 122, false);
+            this.addChild(this._jackpotText);
             //Initialize the reels array of Bitmaps
-            this._reels = new Array();
-            for (var reel = 0; reel < 3; reel++) {
-                this._reels[reel] = new createjs.Bitmap(assets.getResult("Blank"));
-                this._reels[reel].x = 190 + (reel * 100);
-                this._reels[reel].y = 232;
-                this.addChild(this._reels[reel]);
-            }
+            this._initializeBitmapArray();
             // Setup Background
             this._setupBackground("WhiteBackground");
             // FadeIn
@@ -85,36 +82,46 @@ var scenes;
                         this._blanks++;
                         break;
                     case this._checkRange(outCome[spin], 28, 37):
-                        betLine[spin] = "Vensaur";
-                        this._grapes++;
+                        betLine[spin] = "Venasaur";
+                        this._venasaur++;
                         break;
                     case this._checkRange(outCome[spin], 38, 46):
                         betLine[spin] = "Charizard";
-                        this._bananas++;
+                        this._charizard++;
                         break;
                     case this._checkRange(outCome[spin], 47, 54):
                         betLine[spin] = "Blastoise";
-                        this._oranges++;
+                        this._blastoise++;
                         break;
                     case this._checkRange(outCome[spin], 55, 59):
                         betLine[spin] = "Meganium";
-                        this._cherries++;
+                        this._meganium++;
                         break;
                     case this._checkRange(outCome[spin], 60, 62):
                         betLine[spin] = "Typlosion";
-                        this._bars++;
+                        this._typlosion++;
                         break;
                     case this._checkRange(outCome[spin], 63, 64):
                         betLine[spin] = "Feraligatr";
-                        this._bells++;
+                        this._feraligatr++;
                         break;
                     case this._checkRange(outCome[spin], 65, 65):
                         betLine[spin] = "Gengar";
-                        this._sevens++;
+                        this._gengar++;
                         break;
                 }
             }
             return betLine;
+        };
+        //
+        SlotMachine.prototype._initializeBitmapArray = function () {
+            this._reels = new Array();
+            for (var reel = 0; reel < 3; reel++) {
+                this._reels[reel] = new createjs.Bitmap(assets.getResult("Blank"));
+                this._reels[reel].x = 190 + (reel * 100);
+                this._reels[reel].y = 232;
+                this.addChild(this._reels[reel]);
+            }
         };
         //EVENT HANDLERS ++++++++++++++++++++
         SlotMachine.prototype._bet1ButtonClick = function (event) {

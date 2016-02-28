@@ -16,6 +16,11 @@ module scenes {
         private _bet100Button: objects.Button;
         private _spinButton: objects.Button;
         private _reels: createjs.Bitmap[];
+        private _jackpotText: objects.Label;
+        private _creditText: objects.Label;
+        private _betText: objects.Label;
+        private _paidText: objects.Label;
+
 
         private _venasaur = 0;
         private _charizard = 0;
@@ -57,17 +62,19 @@ module scenes {
             // add SpinButton to the scene
             this._spinButton = new objects.Button("SpinButton", 420, 400, false);
             this.addChild(this._spinButton);
-            this._spinButton.on("click", this._spinButtonClick, this);           
+            this._spinButton.on("click", this._spinButtonClick, this); 
+            
+            //Add Jackpot Text to the scene
+            this._jackpotText = new objects.Label(
+                "0",
+                "bold 18px Consolas",
+                "#8A80A3",
+                245, 122, false);
+            this.addChild(this._jackpotText);
             
             //Initialize the reels array of Bitmaps
-            this._reels = new Array<createjs.Bitmap>();
-            for (var reel: number = 0; reel < 3; reel++) {
-                this._reels[reel] = new createjs.Bitmap(assets.getResult("Blank"));
-                this._reels[reel].x = 190 + (reel * 100);
-                this._reels[reel].y = 232;
-                this.addChild(this._reels[reel]);
-            }
-        
+            this._initializeBitmapArray();          
+                   
             // Setup Background
             this._setupBackground("WhiteBackground");
            
@@ -133,6 +140,19 @@ module scenes {
                 }
             }
             return betLine;
+        }
+        
+        //
+        private _initializeBitmapArray(): void {
+
+            this._reels = new Array<createjs.Bitmap>();
+            for (var reel: number = 0; reel < 3; reel++) {
+                this._reels[reel] = new createjs.Bitmap(assets.getResult("Blank"));
+                this._reels[reel].x = 190 + (reel * 100);
+                this._reels[reel].y = 232;
+                this.addChild(this._reels[reel]);
+            }
+
         }
         
         //EVENT HANDLERS ++++++++++++++++++++
