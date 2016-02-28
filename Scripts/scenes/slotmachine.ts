@@ -21,7 +21,6 @@ module scenes {
         private _betText: objects.Label;
         private _paidText: objects.Label;
 
-
         private _venasaur = 0;
         private _charizard = 0;
         private _blastoise = 0;
