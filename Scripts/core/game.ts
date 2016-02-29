@@ -1,10 +1,11 @@
 ﻿//The Source file name: game.ts 
 //Author’s name: Christine Cho
 //Last Modified by: Christine Cho
-//Date last Modified: 02/26/2016
+//Date last Modified: 02/29/2016
 //Program description: The main controller for the slotmachine 
 //Revision History: 
 //      - Added Reset and Off Button + Changed reel images 02/29/2016
+//                  - Added sounds
 //      - Added images for reels 02/26/2016
 
 /// <reference path = "_reference.ts" />
@@ -46,11 +47,15 @@ var assetData:objects.Asset[] = [
     {id: "Duskull", src:"../../Assets/images/Duskull.png"},
     {id: "Duskclops", src:"../../Assets/images/Duskclops.png"},
     {id: "Dusknoir", src:"../../Assets/images/Dusknoir.png"},
-    {id: "Darkrai", src:"../../Assets/images/Darkrai.png"}
+    {id: "Darkrai", src:"../../Assets/images/Darkrai.png"},
+    {id: "SpinClickSound", src:"../../Assets/images/SpinClickSound.ogg"},
+    {id: "GengarSound", src:"../../Assets/images/GengarSound.ogg"},
+    {id: "JackpotSound", src:"../../Assets/images/JackpotSound.ogg"}
 ];
 
 function preload() {
     assets = new createjs.LoadQueue();
+    assets.installPlugin(createjs.Sound);
     assets.installPlugin(createjs.Sound);
     assets.on("complete", init, this);
     assets.loadManifest(assetData);

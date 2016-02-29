@@ -1,10 +1,11 @@
 //The Source file name: slotmachine.ts 
 //Author’s name: Christine Cho
 //Last Modified by: Christine Cho
-//Date last Modified: 02/26/2016
+//Date last Modified: 02/29/2016
 //Program description: Manages the slot machine reels and buttons 
 //Revision History: 
 //      - Added Jackpot logic + Reset and Off buttons + Changed reel images 02/29/2016
+//                  - Added sounds for spin, jackpot, out of credit
 //      - Changed slot machine background, added labels, added logic for buttons 02/28/2016
 //      - Changed reel ids to link to other image and reel image change 02/26/2016
 
@@ -288,6 +289,7 @@ module scenes {
             this._jackpotWinnings = Math.floor(Math.random() * 21 + 1);
             if (this._jackpotPercent == this._jackpotWinnings) {
                 alert("You Won the $" + this._jackpot + " Jackpot!!");
+                createjs.Sound.play("JacpotSound");
                 this._credits += this._jackpot;
                 this._jackpot = 1000;
                 this._jackpotText.text = "1000";
@@ -339,6 +341,7 @@ module scenes {
 
                 for (var reel: number = 0; reel < 3; reel++) {
                     this._reels[reel].image = assets.getResult(pokemonBitmap[reel]);
+                    createjs.Sound.play("SpinClickSound");
                 }
 
                 this._determineWinnings();
@@ -349,6 +352,7 @@ module scenes {
                 this._betText.text = this._bet.toString();
 
             } else {
+                createjs.Sound.play("GengarSound");
                 alert("Please enter a bet amount or reset!");
             }
         }
