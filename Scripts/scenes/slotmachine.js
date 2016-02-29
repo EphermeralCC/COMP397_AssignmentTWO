@@ -30,6 +30,8 @@ var scenes;
         // PUBLIC METHODS +++++++++++++++++++++
         // Start Method
         SlotMachine.prototype.start = function () {
+            // Reset game to initial values
+            this._resetAll();
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
             this.addChild(this._backgroundImage);
@@ -49,9 +51,22 @@ var scenes;
             this._spinButton = new objects.Button("SpinButton", 420, 400, false);
             this.addChild(this._spinButton);
             this._spinButton.on("click", this._spinButtonClick, this);
-            //Add Jackpot Text to the scene
-            this._jackpotText = new objects.Label("0", "bold 18px Consolas", "#8A80A3", 245, 122, false);
+            //Add _jackpotText to the scene
+            this._jackpotText = new objects.Label(this._jackpot.toString(), "bold 18px Consolas", "#8A80A3", 253, 122, false);
+            this._jackpotText.textAlign = "right";
             this.addChild(this._jackpotText);
+            //Add _creditText to the scene
+            this._creditText = new objects.Label(this._creditText.toString(), "bold 18px Consolas", "#8A80A3", 257, 329, false);
+            this._creditText.textAlign = "right";
+            this.addChild(this._creditText);
+            //Add _betText to the scene
+            this._betText = new objects.Label(this._betText.toString(), "bold 18px Consolas", "#8A80A3", 362, 329, false);
+            this._betText.textAlign = "right";
+            this.addChild(this._betText);
+            //Add _paidText to the scene
+            this._paidText = new objects.Label(this._paidText.toString(), "bold 18px Consolas", "#8A80A3", 472, 329, false);
+            this._paidText.textAlign = "right";
+            this.addChild(this._paidText);
             //Initialize the reels array of Bitmaps
             this._initializeBitmapArray();
             // Setup Background
@@ -68,6 +83,12 @@ var scenes;
         /* Utility function to check if a value falls within a range of bounds */
         SlotMachine.prototype._checkRange = function (value, lowerBounds, upperBounds) {
             return (value >= lowerBounds && value <= upperBounds) ? value : -1;
+        };
+        SlotMachine.prototype._resetAll = function () {
+            this._playerMoney = 1000;
+            this._winnerPaid = 0;
+            this._jackpot = 5000;
+            this._bet = 0;
         };
         /* When this function is called it determines the betLine results.
         e.g. Bar - Orange - Banana */

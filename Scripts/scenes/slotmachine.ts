@@ -20,6 +20,11 @@ module scenes {
         private _creditText: objects.Label;
         private _betText: objects.Label;
         private _paidText: objects.Label;
+        private _playerMoney: number;
+        private _winnerPaid: number;
+        private _jackpot: number;
+        private _bet: number;
+
 
         private _venasaur = 0;
         private _charizard = 0;
@@ -38,6 +43,9 @@ module scenes {
         
         // Start Method
         public start(): void {    
+            
+            // Reset game to initial values
+            this._resetAll();
             
             // add background image to the scene
             this._backgroundImage = new createjs.Bitmap(assets.getResult("SlotMachine"));
@@ -63,13 +71,41 @@ module scenes {
             this.addChild(this._spinButton);
             this._spinButton.on("click", this._spinButtonClick, this); 
             
-            //Add Jackpot Text to the scene
+            //Add _jackpotText to the scene
             this._jackpotText = new objects.Label(
-                "0",
+                this._jackpot.toString(),
                 "bold 18px Consolas",
                 "#8A80A3",
-                245, 122, false);
+                253, 122, false);
+            this._jackpotText.textAlign = "right";
             this.addChild(this._jackpotText);
+            
+            //Add _creditText to the scene
+            this._creditText = new objects.Label(
+                this._creditText.toString(),
+                "bold 18px Consolas",
+                "#8A80A3",
+                257, 329, false);
+            this._creditText.textAlign = "right";
+            this.addChild(this._creditText);
+            
+            //Add _betText to the scene
+            this._betText = new objects.Label(
+                this._betText.toString(),
+                "bold 18px Consolas",
+                "#8A80A3",
+                362, 329, false);
+            this._betText.textAlign = "right";
+            this.addChild(this._betText);
+            
+            //Add _paidText to the scene
+            this._paidText = new objects.Label(
+                this._paidText.toString(),
+                "bold 18px Consolas",
+                "#8A80A3",
+                472, 329, false);
+            this._paidText.textAlign = "right";
+            this.addChild(this._paidText);
             
             //Initialize the reels array of Bitmaps
             this._initializeBitmapArray();          
@@ -93,6 +129,13 @@ module scenes {
         /* Utility function to check if a value falls within a range of bounds */
         private _checkRange(value: number, lowerBounds: number, upperBounds: number): number {
             return (value >= lowerBounds && value <= upperBounds) ? value : -1;
+        }
+
+        private _resetAll() {
+            this._playerMoney = 1000;
+            this._winnerPaid = 0;
+            this._jackpot = 5000;
+            this._bet = 0;
         }
         
         /* When this function is called it determines the betLine results.
