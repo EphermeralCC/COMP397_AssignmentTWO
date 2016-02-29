@@ -4,6 +4,7 @@
 //Date last Modified: 02/26/2016
 //Program description: The main controller for the slotmachine 
 //Revision History: 
+//      - Added Reset and Off Button + Changed reel images 02/29/2016
 //      - Added images for reels 02/26/2016
 
 /// <reference path = "_reference.ts" />
@@ -28,20 +29,24 @@ var assetData:objects.Asset[] = [
     {id: "StartButton", src:"../../Assets/images/StartButton.png"},
     {id: "StartOverButton", src:"../../Assets/images/StartOverButton.png"},
     {id: "SlotMachine", src:"../../Assets/images/SlotMachine.png"},
+    {id: "Dark", src:"../../Assets/images/Dark.png"},
     {id: "Bet1Button", src:"../../Assets/images/Bet1Button.png"},
     {id: "Bet10Button", src:"../../Assets/images/Bet10Button.png"},
     {id: "Bet100Button", src:"../../Assets/images/Bet100Button.png"},
     {id: "SpinButton", src:"../../Assets/images/SpinButton.png"},
+    {id: "NoSpinButton", src:"../../Assets/images/NoSpinButton.png"},
+    {id: "ResetButton", src:"../../Assets/images/ResetButton.png"},
+    {id: "OffButton", src:"../../Assets/images/OffButton.png"},
     {id: "BlackBackground", src:"../../Assets/images/BlackBackground.png"},
     {id: "WhiteBackground", src:"../../Assets/images/WhiteBackground.png"},
     {id: "Blank", src:"../../Assets/images/Blank.png"},
-    {id: "Venasaur", src:"../../Assets/images/Venasaur.png"},
-    {id: "Charizard", src:"../../Assets/images/Charizard.png"},
-    {id: "Blastoise", src:"../../Assets/images/Blastoise.png"},
-    {id: "Typlosion", src:"../../Assets/images/Typlosion.png"},
-    {id: "Meganium", src:"../../Assets/images/Meganium.png"},
-    {id: "Feraligatr", src:"../../Assets/images/Feraligatr.png"},
-    {id: "Gengar", src:"../../Assets/images/Gengar.png"}
+    {id: "Gastly", src:"../../Assets/images/Gastly.png"},
+    {id: "Haunter", src:"../../Assets/images/Haunter.png"},
+    {id: "Gengar", src:"../../Assets/images/Gengar.png"},
+    {id: "Duskull", src:"../../Assets/images/Duskull.png"},
+    {id: "Duskclops", src:"../../Assets/images/Duskclops.png"},
+    {id: "Dusknoir", src:"../../Assets/images/Dusknoir.png"},
+    {id: "Darkrai", src:"../../Assets/images/Darkrai.png"}
 ];
 
 function preload() {
