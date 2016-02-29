@@ -4,6 +4,7 @@
 //Date last Modified: 02/26/2016
 //Program description: Manages the slot machine reels and buttons 
 //Revision History: 
+//      - Changed slot machine background, added labels, added logic for buttons
 //      - Changed reel ids to link to other image and reel image change 02/26/2016
 
 // MENU SCENE
@@ -20,7 +21,7 @@ module scenes {
         private _creditText: objects.Label;
         private _betText: objects.Label;
         private _paidText: objects.Label;
-        private _playerMoney: number;
+        private _credits: number;
         private _winnerPaid: number;
         private _jackpot: number;
         private _bet: number;
@@ -82,7 +83,7 @@ module scenes {
             
             //Add _creditText to the scene
             this._creditText = new objects.Label(
-                this._creditText.toString(),
+                this._credits.toString(),
                 "bold 18px Consolas",
                 "#8A80A3",
                 257, 329, false);
@@ -91,7 +92,7 @@ module scenes {
             
             //Add _betText to the scene
             this._betText = new objects.Label(
-                this._betText.toString(),
+                this._bet.toString(),
                 "bold 18px Consolas",
                 "#8A80A3",
                 362, 329, false);
@@ -100,7 +101,7 @@ module scenes {
             
             //Add _paidText to the scene
             this._paidText = new objects.Label(
-                this._paidText.toString(),
+                this._winnerPaid.toString(),
                 "bold 18px Consolas",
                 "#8A80A3",
                 472, 329, false);
@@ -132,7 +133,7 @@ module scenes {
         }
 
         private _resetAll() {
-            this._playerMoney = 1000;
+            this._credits = 1000;
             this._winnerPaid = 0;
             this._jackpot = 5000;
             this._bet = 0;
@@ -197,24 +198,43 @@ module scenes {
 
         }
         
+        private _makeABet(_bet: number) {
+            //Ensure player bet is less than or equal to player's credit
+            if (_bet <= this._credits) {
+                this._bet += _bet;
+                this._credits -= _bet;
+                this._creditText.text = this._credits.toString();
+                this._betText.text = this._bet.toString();
+            }
+        }
+        
         //EVENT HANDLERS ++++++++++++++++++++
         private _bet1ButtonClick(event: createjs.MouseEvent): void {
             console.log("Bet 1 Credit");
+            this._makeABet(1);
         }
 
         private _bet10ButtonClick(event: createjs.MouseEvent): void {
             console.log("Bet 10 Credit");
+            this._makeABet(10);
         }
 
         private _bet100ButtonClick(event: createjs.MouseEvent): void {
             console.log("Bet 100 Credit");
+            this._makeABet(100);
         }
 
         private _spinButtonClick(event: createjs.MouseEvent): void {
-            var pokemonBitmap: string[] = this._spinReels();
+            if (this._bet > 0) {
+                var pokemonBitmap: string[] = this._spinReels();
 
-            for (var reel: number = 0; reel < 3; reel++) {
-                this._reels[reel].image = assets.getResult(pokemonBitmap[reel]);
+                for (var reel: number = 0; reel < 3; reel++) {
+                    this._reels[reel].image = assets.getResult(pokemonBitmap[reel]);
+                }
+                
+                //reset player's bet to zero
+                this._bet = 0;
+                this._betText.text = this._bet.toString();
             }
         }
     }

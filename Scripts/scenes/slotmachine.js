@@ -4,6 +4,7 @@
 //Date last Modified: 02/26/2016
 //Program description: Manages the slot machine reels and buttons 
 //Revision History: 
+//      - Changed slot machine background, added labels, added logic for buttons
 //      - Changed reel ids to link to other image and reel image change 02/26/2016
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
@@ -56,15 +57,15 @@ var scenes;
             this._jackpotText.textAlign = "right";
             this.addChild(this._jackpotText);
             //Add _creditText to the scene
-            this._creditText = new objects.Label(this._creditText.toString(), "bold 18px Consolas", "#8A80A3", 257, 329, false);
+            this._creditText = new objects.Label(this._credits.toString(), "bold 18px Consolas", "#8A80A3", 257, 329, false);
             this._creditText.textAlign = "right";
             this.addChild(this._creditText);
             //Add _betText to the scene
-            this._betText = new objects.Label(this._betText.toString(), "bold 18px Consolas", "#8A80A3", 362, 329, false);
+            this._betText = new objects.Label(this._bet.toString(), "bold 18px Consolas", "#8A80A3", 362, 329, false);
             this._betText.textAlign = "right";
             this.addChild(this._betText);
             //Add _paidText to the scene
-            this._paidText = new objects.Label(this._paidText.toString(), "bold 18px Consolas", "#8A80A3", 472, 329, false);
+            this._paidText = new objects.Label(this._winnerPaid.toString(), "bold 18px Consolas", "#8A80A3", 472, 329, false);
             this._paidText.textAlign = "right";
             this.addChild(this._paidText);
             //Initialize the reels array of Bitmaps
@@ -85,7 +86,7 @@ var scenes;
             return (value >= lowerBounds && value <= upperBounds) ? value : -1;
         };
         SlotMachine.prototype._resetAll = function () {
-            this._playerMoney = 1000;
+            this._credits = 1000;
             this._winnerPaid = 0;
             this._jackpot = 5000;
             this._bet = 0;
@@ -144,20 +145,37 @@ var scenes;
                 this.addChild(this._reels[reel]);
             }
         };
+        SlotMachine.prototype._makeABet = function (_bet) {
+            //Ensure player bet is less than or equal to player's credit
+            if (_bet <= this._credits) {
+                this._bet += _bet;
+                this._credits -= _bet;
+                this._creditText.text = this._credits.toString();
+                this._betText.text = this._bet.toString();
+            }
+        };
         //EVENT HANDLERS ++++++++++++++++++++
         SlotMachine.prototype._bet1ButtonClick = function (event) {
             console.log("Bet 1 Credit");
+            this._makeABet(1);
         };
         SlotMachine.prototype._bet10ButtonClick = function (event) {
             console.log("Bet 10 Credit");
+            this._makeABet(10);
         };
         SlotMachine.prototype._bet100ButtonClick = function (event) {
             console.log("Bet 100 Credit");
+            this._makeABet(100);
         };
         SlotMachine.prototype._spinButtonClick = function (event) {
-            var pokemonBitmap = this._spinReels();
-            for (var reel = 0; reel < 3; reel++) {
-                this._reels[reel].image = assets.getResult(pokemonBitmap[reel]);
+            if (this._bet > 0) {
+                var pokemonBitmap = this._spinReels();
+                for (var reel = 0; reel < 3; reel++) {
+                    this._reels[reel].image = assets.getResult(pokemonBitmap[reel]);
+                }
+                //reset player's bet to zero
+                this._bet = 0;
+                this._betText.text = this._bet.toString();
             }
         };
         return SlotMachine;
