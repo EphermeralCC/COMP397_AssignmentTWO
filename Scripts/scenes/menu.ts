@@ -1,3 +1,11 @@
+//The Source file name: menu.ts 
+//Author’s name: Christine Cho
+//Last Modified by: Christine Cho
+//Date last Modified: 02/29/2016
+//Program description: The menu scene for the game
+//Revision History: 
+//      - Updated menu background 02/29/2016
+
 // MENU SCENE
 module scenes {
     export class Menu extends objects.Scene {
@@ -15,12 +23,14 @@ module scenes {
         // Start Method
         public start(): void {    
 
+            // Setup Background
+            this._setupBackground("GengarBackground");
             
             // add the WELCOME Label to the MENU scene
             this._welcomeLabel = new objects.Label(
-                "SLOT MACHINE",
+                "Phantom Slots",
                 "60px Consolas",
-                "#000000",
+                "#FFFFFF",
                 config.Screen.CENTER_X,
                 config.Screen.CENTER_Y, true);
             this.addChild(this._welcomeLabel);
@@ -34,12 +44,6 @@ module scenes {
             
             // START Button event listener
             this._startButton.on("click", this._startButtonClick, this);
-           
-            // Setup Background
-            this._setupBackground("WhiteBackground");
-           
-            // FadeIn
-            this._fadeIn(500);
            
             // add this scene to the global stage container
             stage.addChild(this);
@@ -57,7 +61,7 @@ module scenes {
         private _startButtonClick(event: createjs.MouseEvent) {
             //FadeOut 
             this._fadeOut(500, () => {
-                // Switch to the LEFT_CAVE Scene
+                // Switch to the SLOT_MACHINE Scene
                 scene = config.Scene.SLOT_MACHINE;
                 changeScene();
             });

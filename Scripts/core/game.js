@@ -35,6 +35,7 @@ var assetData = [
     { id: "OffButton", src: "../../Assets/images/OffButton.png" },
     { id: "BlackBackground", src: "../../Assets/images/BlackBackground.png" },
     { id: "WhiteBackground", src: "../../Assets/images/WhiteBackground.png" },
+    { id: "GengarBackground", src: "../../Assets/images/GengarBackground.png" },
     { id: "Blank", src: "../../Assets/images/Blank.png" },
     { id: "Gastly", src: "../../Assets/images/Gastly.png" },
     { id: "Haunter", src: "../../Assets/images/Haunter.png" },
